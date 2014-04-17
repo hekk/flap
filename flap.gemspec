@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Flap::VERSION
   spec.authors       = ["Tomohiro Nishimura"]
   spec.email         = ["tomohiro68@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{tap + instance_eval}
+  spec.description   = %q{tap + instance_eval}
+  spec.homepage      = "https://github.com/hekk/flap"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
