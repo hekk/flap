@@ -7,4 +7,4 @@ module Flap
   end
 end
 
-Object.include Flap
+Object.__send__ :include, Flap
