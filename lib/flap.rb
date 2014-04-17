@@ -1,5 +1,10 @@
 require "flap/version"
 
 module Flap
-  # Your code goes here...
+  def flap(&block)
+    self.instance_eval &block if block_given?
+    self
+  end
 end
+
+Object.include Flap
