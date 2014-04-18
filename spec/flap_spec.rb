@@ -1,19 +1,61 @@
 require "spec_helper"
 
 describe Flap do
-  it "Object has flap method" do
-    expect(Object).to respond_to(:flap)
+  shared_examples_for "xxx_tap_eval" do
+    it "has method" do
+      expect(subject).to respond_to(meth)
+    end
+
+    it "returns self" do
+      expect(subject.public_send(meth)).to eql subject
+    end
+
+    it "block binded self context" do
+      ret = nil
+      subject.public_send(meth) { ret = self }
+      expect(ret).to eql subject
+    end
   end
 
-  let(:object) { "object" }
-
-  it "returns self" do
-    expect(object.flap).to eql object
+  describe "instance_tap_eval" do
+    subject { Object.new }
+    let(:meth) { :instance_tap_eval }
+    it_behaves_like "xxx_tap_eval"
   end
 
-  it "block binded self context" do
-    ret = nil
-    object.flap { ret = self }
-    expect(ret).to eql object
+  describe "class_tap_eval" do
+    subject { Module }
+    let(:meth) { :class_tap_eval }
+    it_behaves_like "xxx_tap_eval"
+  end
+
+  describe ".enable_short_methods!" do
+    before do
+      Flap.enable_short_methods!
+    end
+
+    it "Object has :itap instance method" do
+      expect(Object.new).to respond_to(:itap)
+    end
+
+    it "Module has :ctap class method" do
+      expect(Module).to respond_to(:ctap)
+    end
+  end
+
+  context "deprecated" do
+    let(:meth) { :flap }
+    it_behaves_like "xxx_tap_eval"
+
+    it "shows deprecated message" do
+      begin
+        original = $stderr
+        $stderr = result = StringIO.new
+        flap
+        expect(result.string).to match("deprecated")
+      ensure
+        $stderr = original
+      end
+    end
   end
 end
