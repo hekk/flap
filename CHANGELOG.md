@@ -2,6 +2,10 @@
 
 ## Development
 
+## v0.2.2
+
+* Rename xxx_tap_eval to xxx_eval_tap ([@Sixeight])
+
 ## v0.2.1
 
 * Update README.md ([@Sixeight])
