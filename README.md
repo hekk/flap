@@ -34,10 +34,19 @@ p hash #=> {:a => 1, :b => 2}
 p ret #=> {:b => 2}
 
 # w/ flap
-ret = hash.dup.flap { delete :a }
+ret = hash.dup.instance_tap_eval { delete :a }
 
 p hash #=> {:a => 1, :b => 2}
 p ret #=> {:b => 2}
+```
+
+You can also use short version of methods.
+
+```ruby
+Flap.enable_short_methods!
+
+hash = {a: 1}
+hash.itap { delete :a } #=> {}
 ```
 
 ## Contributing
