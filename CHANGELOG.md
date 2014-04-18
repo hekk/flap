@@ -2,6 +2,11 @@
 
 ## Development
 
+## v0.2.0
+
+* Add instance_tap_eval and class_tap_eval ([@Sixeight])
+* Object#flap becomes deprecated ([@Sixeight])
+
 ## v0.1.1
 
 * Fixed Module#include is private at under Ruby 2.0 bug ([@Sixeight])
