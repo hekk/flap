@@ -17,15 +17,15 @@ describe Flap do
     end
   end
 
-  describe "instance_tap_eval" do
+  describe "instance_eval_tap" do
     subject { Object.new }
-    let(:meth) { :instance_tap_eval }
+    let(:meth) { :instance_eval_tap }
     it_behaves_like "xxx_tap_eval"
   end
 
-  describe "class_tap_eval" do
+  describe "class_eval_tap" do
     subject { Module }
-    let(:meth) { :class_tap_eval }
+    let(:meth) { :class_eval_tap }
     it_behaves_like "xxx_tap_eval"
   end
 

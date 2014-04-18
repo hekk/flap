@@ -34,7 +34,7 @@ p hash #=> {:a => 1, :b => 2}
 p ret #=> {:b => 2}
 
 # w/ flap
-ret = hash.dup.instance_tap_eval { delete :a }
+ret = hash.dup.instance_eval_tap { delete :a }
 
 p hash #=> {:a => 1, :b => 2}
 p ret #=> {:b => 2}

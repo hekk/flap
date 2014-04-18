@@ -11,18 +11,18 @@ module Flap
   #
   # Examples
   #   hash = {a: 1, b: 2}
-  #   hash.instance_tap_eval { delete :a } #=> {:b => 2}
+  #   hash.instance_eval_tap { delete :a } #=> {:b => 2}
   #
   # Returns self
-  def instance_tap_eval(&block)
+  def instance_eval_tap(&block)
     self.instance_eval &block if block_given?
     self
   end
 
-  # Deprecated: same as instance_tap_eval
+  # Deprecated: same as instance_eval_tap
   def flap(&block)
     warn "[deprecated] this method will be removed."
-    instance_tap_eval &block
+    instance_eval_tap &block
   end
 
   module ModuleMethods
@@ -31,11 +31,11 @@ module Flap
     # block - call in class context
     #
     # Examples
-    #   Klass = Class.new.class_tap_eval { include Awesome }
+    #   Klass = Class.new.class_eval_tap { include Awesome }
     #   Klass.new.awesome_method
     #
     # Returns self
-    def class_tap_eval(&block)
+    def class_eval_tap(&block)
       class_eval &block if block_given?
       self
     end
@@ -51,9 +51,9 @@ module Flap
   module ShortMethods
     def self.included(base)
       base.class_eval do
-        alias_method :itap, :instance_tap_eval
+        alias_method :itap, :instance_eval_tap
         Module.class_eval do
-          alias_method :ctap, :class_tap_eval
+          alias_method :ctap, :class_eval_tap
         end
       end
     end
