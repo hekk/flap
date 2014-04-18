@@ -2,6 +2,10 @@
 
 ## Development
 
+## v0.2.1
+
+* Update README.md ([@Sixeight])
+
 ## v0.2.0
 
 * Add instance_tap_eval and class_tap_eval ([@Sixeight])
